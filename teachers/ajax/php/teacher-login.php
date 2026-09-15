@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json; charset=UTF-8');
 
-// Root එකේ db.php එක include කරගැනීම
+// Include db.php from the root
 require_once __DIR__ . '/../../db.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -18,7 +18,7 @@ if (empty($username) || empty($password)) {
     exit();
 }
 
-// Database එකෙන් Teacher ව Username එකෙන් හෝ Email එකෙන් පරීක්ෂා කිරීම
+// Check the teacher by username or email in the database
 $stmt = $conn->prepare("SELECT id, title, full_name, username, email, password FROM teachers WHERE (username = ? OR email = ?) LIMIT 1");
 $stmt->bind_param("ss", $username, $username);
 $stmt->execute();
@@ -27,10 +27,10 @@ $result = $stmt->get_result();
 if ($result && $result->num_rows > 0) {
     $teacher = $result->fetch_assoc();
 
-    // Plain text සහ Hashed Passwords යන දෙකටම Support කිරීම
+    // Support both plain text and hashed passwords
     if ($password === $teacher['password'] || password_verify($password, $teacher['password'])) {
         
-        // Session Variables Set කිරීම
+        // Set session variables
         $_SESSION['teacher_logged_in'] = true;
         $_SESSION['teacher_id']        = $teacher['id'];
         $_SESSION['teacher_name']      = (!empty($teacher['title']) ? $teacher['title'] . ' ' : '') . $teacher['full_name'];

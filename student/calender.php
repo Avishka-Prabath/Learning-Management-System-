@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-// Database & Admin Class Dependencies Include කිරීම
+// Include database & admin class dependencies
 require_once __DIR__ . '/../admin/class/include.php';
 
 $schedules = [];
 
-// 1. Admin Schedules Table එකෙන් Data ගැනීම
+// 1. Get data from the admin schedules table
 if (class_exists('Calendar')) {
     $calendarObj = new Calendar();
     $adminSchedules = $calendarObj->all();
@@ -35,7 +35,7 @@ if (class_exists('Calendar')) {
     }
 }
 
-// Database Connection එක ලබාගැනීම
+// Get the database connection
 $db = Database::getInstance();
 $conn = method_exists($db, 'getConnection') ? $db->getConnection() : $db->DB_CON;
 
@@ -68,7 +68,7 @@ if ($matAssignRes && $matAssignRes->num_rows > 0) {
     }
 }
 
-// 3. Teacher Assignments Table එකෙන් Data ගැනීම (General Assignments)
+// 3. Get data from the teacher assignments table (general assignments)
 $assignmentsQuery = "SELECT * FROM assignments ORDER BY deadline_date ASC";
 $assignmentsRes = $conn->query($assignmentsQuery);
 
@@ -88,7 +88,7 @@ if ($assignmentsRes && $assignmentsRes->num_rows > 0) {
     }
 }
 
-// 4. Teacher/Admin Live Classes Table එකෙන් Data ගැනීම
+// 4. Get data from the teacher/admin live classes table
 $liveClassesQuery = "SELECT * FROM live_classes ORDER BY class_date ASC";
 $liveClassesRes = $conn->query($liveClassesQuery);
 
@@ -108,7 +108,7 @@ if ($liveClassesRes && $liveClassesRes->num_rows > 0) {
     }
 }
 
-// Events ටික Date එක අනුව Mapping කර ගැනීම (Calendar Grid එකේ පෙන්වීමට)
+// Map events by date (for display on the calendar grid)
 $eventsByDay = [];
 if (!empty($schedules)) {
     foreach ($schedules as $item) {
@@ -261,7 +261,7 @@ if (!empty($schedules)) {
                                                 <td class="<?= ($currentDay == $todayDay) ? 'today' : '' ?>">
                                                     <span class="date-num"><?= $currentDay ?></span>
                                                     
-                                                    <!-- අදාළ දවසට තිබෙන Events Display කිරීම -->
+                                                    <!-- Display events for the relevant day -->
                                                     <?php if (isset($eventsByDay[$currentDay])): ?>
                                                         <?php foreach ($eventsByDay[$currentDay] as $ev): ?>
                                                             <?php 

@@ -3,10 +3,10 @@ if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
     @session_start();
 }
 
-// PHP File name එක check කර ගැනීම
+// Check the current PHP file name
 $currentPage = basename($_SERVER['PHP_SELF']);
 
-// Log වී සිටින Lecturer ගේ නම ලබා ගැනීම
+// Get the logged-in lecturer's name
 $sidebar_teacher_name = $_SESSION['teacher_name'] ?? 'Instructor';
 $sidebar_avatar_url   = "https://ui-avatars.com/api/?name=" . urlencode($sidebar_teacher_name) . "&background=0D6EFD&color=fff";
 ?>

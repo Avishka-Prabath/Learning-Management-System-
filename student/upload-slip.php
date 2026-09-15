@@ -1,5 +1,5 @@
 <?php
-// Database connection details (ඔයාගේ database details වලට අනුව වෙනස් කරගන්න)
+// Database connection details (adjust to match your own database details)
 $host = "127.0.0.1:8889";
 $user = "root";
 $pass = "";
@@ -14,19 +14,19 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $course_id = $_POST['course_id'] ?? '';
     $amount    = $_POST['amount'] ?? '';
-    $student_id = "EM-2026-884"; // Session එකෙන් එන Student ID එක (e.g. $_SESSION['student_id'])
+    $student_id = "EM-2026-884"; // Student ID from session (e.g. $_SESSION['student_id'])
 
-    // Slip file handle කිරීම
+    // Handle the slip file
     if (isset($_FILES['payment_slip']) && $_FILES['payment_slip']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['payment_slip']['tmp_name'];
         $fileName    = $_FILES['payment_slip']['name'];
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-        // File extensions allow කිරීම
+        // Allowed file extensions
         $allowedExtensions = ['jpg', 'jpeg', 'png', 'pdf'];
 
         if (in_array($fileExtension, $allowedExtensions)) {
-            // Upload directory එකක් සාදාගැනීම
+            // Create an upload directory
             $uploadFileDir = './uploads/slips/';
             if (!is_dir($uploadFileDir)) {
                 mkdir($uploadFileDir, 0755, true);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dest_path = $uploadFileDir . $newFileName;
 
             if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                // Database එකට insert කිරීම (ඔයාගේ Table structure එක අනුව)
+                // Insert into database (adjust to match your table structure)
                 /*
                 $sql = "INSERT INTO payments (student_id, course_id, amount, slip_path, status) VALUES (?, ?, ?, ?, 'Pending')";
                 $stmt = $conn->prepare($sql);

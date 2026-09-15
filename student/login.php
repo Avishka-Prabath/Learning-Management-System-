@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once __DIR__ . '/../db.php';
 
-// Already logged in නම් කෙලින්ම home.php එකට යැවීම
+// If already logged in, redirect straight to home.php
 if (isset($_SESSION['student_logged_in']) && $_SESSION['student_logged_in'] === true) {
     header("Location: home.php");
     exit();
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($email === '' || $password === '') {
         $error = "Please enter both email/student ID and password.";
     } else {
-        // Course Code එකත් එක්කම Fetch කරගන්නා JOIN Query එක
+        // JOIN query that also fetches the course code
         $stmt = $conn->prepare("
             SELECT 
                 s.id, 

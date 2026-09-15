@@ -25,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // EMAIL DUPLICATE CHECK
     // -------------------------------------------------------------
     if ($student_db_id > 0) {
-        // UPDATE MODE: තමන්ගේ ID එක හැර වෙනත් කෙනෙකුට මේ Email එක ඇත්දැයි බැලීම
+        // UPDATE MODE: check if this email belongs to someone else (excluding own ID)
         $checkEmail = $conn->prepare("SELECT id FROM students WHERE campus_email = ? AND id != ?");
         $checkEmail->bind_param("si", $campus_email, $student_db_id);
     } else {
-        // INSERT MODE: ඩේටාබේස් එකේ වෙනත් කෙනෙකුට මේ Email එක තිබේදැයි බැලීම
+        // INSERT MODE: check if this email already exists for someone else
         $checkEmail = $conn->prepare("SELECT id FROM students WHERE campus_email = ?");
         $checkEmail->bind_param("s", $campus_email);
     }

@@ -2,16 +2,16 @@
 session_start();
 include_once('../db.php');
 
-// URL එකෙන් instructor ID එක ලබාගැනීම
+// Get instructor ID from the URL
 $instructor_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Database එකෙන් අදාළ Instructor ගේ දත්ත Fetch කිරීම
+// Fetch the relevant instructor's data from the database
 $stmt = $conn->prepare("SELECT * FROM teachers WHERE id = ? AND status = 'Active' LIMIT 1");
 $stmt->bind_param("i", $instructor_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Instructor කෙනෙක් හමු නොවූයේ නම් Instructors ලැයිස්තුවට Redirect කිරීම
+// Redirect to the instructors list if no instructor is found
 if ($result && $result->num_rows > 0) {
     $data = $result->fetch_assoc();
 } else {
@@ -19,7 +19,7 @@ if ($result && $result->num_rows > 0) {
     exit();
 }
 
-// Full Name සකසා ගැනීම
+// Build the full name
 $full_title_name = trim(($data['title'] ?? '') . ' ' . ($data['full_name'] ?? ''));
 ?>
 

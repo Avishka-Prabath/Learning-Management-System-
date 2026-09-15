@@ -3,14 +3,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Root එකේ තියෙන db.php ෆයිල් එක Include කිරීම
+// Include the db.php file from the root
 if (file_exists(__DIR__ . '/../db.php')) {
     require_once __DIR__ . '/../db.php';
 } elseif (file_exists(__DIR__ . '/db.php')) {
     require_once __DIR__ . '/db.php';
 }
 
-// Instructor දැනටමත් Log වී ඇත්නම් Direct Dashboard එකට යැවීම
+// Redirect straight to dashboard if the instructor is already logged in
 if (isset($_SESSION['teacher_logged_in']) && $_SESSION['teacher_logged_in'] === true) {
     header("Location: dashboard.php");
     exit();
@@ -18,14 +18,14 @@ if (isset($_SESSION['teacher_logged_in']) && $_SESSION['teacher_logged_in'] === 
 
 $error_message = "";
 
-// Login Form එක Submit වූ විට ක්‍රියාත්මක වන Backend Logic එක
+// Backend logic that runs when the login form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login_input = trim($_POST['email'] ?? '');
     $password    = trim($_POST['password'] ?? '');
 
     if (!empty($login_input) && !empty($password)) {
         
-        // Database එකෙන් Email හෝ Username එක අනුව Instructor ව සෙවීම
+        // Look up the instructor by email or username in the database
         $stmt = $conn->prepare("SELECT id, title, full_name, email, username, password FROM teachers WHERE (email = ? OR username = ?) LIMIT 1");
         $stmt->bind_param("ss", $login_input, $login_input);
         $stmt->execute();
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             if ($is_valid_pass) {
-                // Session Variables සෙට් කිරීම
+                // Set session variables
                 $_SESSION['teacher_logged_in'] = true;
                 $_SESSION['teacher_id']        = $teacher['id'];
                 $_SESSION['teacher_name']      = (!empty($teacher['title']) ? $teacher['title'] . ' ' : '') . $teacher['full_name'];

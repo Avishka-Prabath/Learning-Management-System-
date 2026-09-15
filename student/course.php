@@ -13,7 +13,7 @@ if (!isset($_SESSION['student_logged_in']) || $_SESSION['student_logged_in'] !==
 
 $student_pk_id = intval($_SESSION['student_id'] ?? 0);
 
-// 2. Logged-in Student Details Fetch කරගැනීම
+// 2. Fetch the logged-in student's details
 $stmtStud = $conn->prepare("SELECT * FROM students WHERE id = ? LIMIT 1");
 $stmtStud->bind_param("i", $student_pk_id);
 $stmtStud->execute();
@@ -22,14 +22,14 @@ $studentData = $stmtStud->get_result()->fetch_assoc();
 $student_campus_id  = trim($studentData['student_id'] ?? ''); // e.g. SE-2026-0001
 $student_course_ref = trim($studentData['course_id'] ?? '');
 
-// Campus ID Prefix Extract කරගැනීම (SE, CS, BM, DS, ICT)
+// Extract the campus ID prefix (SE, CS, BM, DS, ICT)
 $prefix = 'SE'; // Default
 if (!empty($student_campus_id)) {
     $parts = explode('-', $student_campus_id);
     $prefix = strtoupper($parts[0] ?? 'SE');
 }
 
-// 3. Prefix එකට අදාළ Degree Course එක Courses Table එකෙන් Fetch කිරීම
+// 3. Fetch the degree course matching the prefix from the courses table
 $stmtCourse = $conn->prepare("
     SELECT c.*, t.full_name AS instructor_name, t.title AS instructor_title 
     FROM courses c 
@@ -44,7 +44,7 @@ $stmtCourse->bind_param("ssss", $student_course_ref, $student_course_ref, $prefi
 $stmtCourse->execute();
 $selectedCourse = $stmtCourse->get_result()->fetch_assoc();
 
-// Dynamic Course Values Set කිරීම
+// Set dynamic course values
 $course_id           = intval($selectedCourse['id'] ?? 3); // SE Default Course ID = 3
 $display_course_name = $selectedCourse['course_name'] ?? 'BSc (Hons) in Software Engineering';
 $display_course_code = $selectedCourse['course_code'] ?? ($prefix . '-2026');

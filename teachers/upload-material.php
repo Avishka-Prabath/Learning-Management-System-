@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Teacher Log වී නැතහොත් login.php වෙත යැවීම
+// Redirect to login.php if the teacher is not logged in
 if (!isset($_SESSION['teacher_logged_in']) || $_SESSION['teacher_logged_in'] !== true) {
     header("Location: login.php");
     exit();
@@ -9,10 +9,10 @@ if (!isset($_SESSION['teacher_logged_in']) || $_SESSION['teacher_logged_in'] !==
 
 require_once '../db.php';
 
-// Log වී සිටින Lecturer ගේ ID එක ලබා ගැනීම
+// Get the logged-in lecturer's ID
 $current_teacher_id = intval($_SESSION['teacher_id'] ?? 0);
 
-// Instructor ට Assign කර ඇති Module එක Fetch කරගැනීම
+// Fetch the module assigned to the instructor
 $assigned_module_id = 0;
 $assigned_module_name = 'No Module Assigned';
 

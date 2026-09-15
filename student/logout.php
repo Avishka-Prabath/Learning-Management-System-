@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-// 1. All session variables clear කිරීම
+// 1. Clear all session variables
 $_SESSION = array();
 
-// 2. Session cookie එක Delete කිරීම (If exists)
+// 2. Delete the session cookie (if it exists)
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
     setcookie(session_name(), '', time() - 42000,
@@ -13,10 +13,10 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-// 3. Session එක සම්පූර්ණයෙන්ම Destroy කිරීම
+// 3. Fully destroy the session
 session_destroy();
 
-// 4. Student Login Page එකට Redirect කිරීම
+// 4. Redirect to the student login page
 header("Location: login.php");
 exit();
 ?>

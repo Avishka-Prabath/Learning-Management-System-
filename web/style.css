@@ -10,7 +10,7 @@ body {
     border-color: #4f46e5 !important;
 }
 
-/* FIX: Text Primary එක white/bright text එක්ක blue background උඩ පැහැදිලි කරමු */
+/* FIX: Make primary text clearer with white/bright text on blue background */
 .text-primary {
     color: #4f46e5 !important;
 }
@@ -30,10 +30,10 @@ body {
 .hero-section p,
 .hero-section .lead {
     color: #ffffff !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* ලියවිල්ල පැහැදිලිව Highlight වෙන්න */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Make the text stand out clearly */
 }
 
-/* Blue Backgrounds වල Badges පැහැදිලි කිරීම */
+/* Make badges clearer on blue backgrounds */
 .badge.bg-light.text-primary {
     color: #0b1a51 !important;
     font-weight: 700 !important;

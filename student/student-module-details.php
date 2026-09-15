@@ -471,7 +471,7 @@ $assignments = [
                                 </a>
 
                             <?php else: ?>
-                                <!-- Class එකක් Schedule කර නැති විට -->
+                                <!-- When no class has been scheduled -->
                                 <p class="text-muted extra-small mb-3">No live sessions scheduled for this module at the moment.</p>
                                 <button class="btn btn-light text-muted border w-100 rounded-pill btn-sm extra-small py-2" disabled>
                                     <i class="bi bi-lock-fill me-1"></i> Pending Schedule

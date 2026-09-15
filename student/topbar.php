@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Database Connection එක Check කරගැනීම
+// Check the database connection
 if (file_exists('../db.php')) {
     require_once '../db.php';
 } elseif (file_exists('db.php')) {
@@ -12,7 +12,7 @@ if (file_exists('../db.php')) {
 
 $s_id = $_SESSION['student_id'] ?? 0;
 
-// Database එකෙන් Student ගේ Latest Dynamic ID, Name, Email සහ Course Code එක Fetch කිරීම
+// Fetch the student's latest dynamic ID, name, email & course code from the database
 $s_name  = $_SESSION['student_name'] ?? 'Student Profile';
 $s_email = $_SESSION['student_email'] ?? 'student@edumart.ac.lk';
 $s_code  = $_SESSION['student_code'] ?? 'STUDENT';
@@ -37,7 +37,7 @@ if (isset($conn) && $s_id > 0) {
         $s_email = $topData['email'] ?? $s_email;
         $s_course_code = $topData['course_code'] ?? $s_course_code;
 
-        // Session values auto update කිරීම
+        // Auto-update session values
         $_SESSION['student_code'] = $s_code;
         $_SESSION['student_name'] = $s_name;
         $_SESSION['student_email'] = $s_email;

@@ -9,7 +9,7 @@ if (!isset($_SESSION['teacher_id'])) {
     $current_teacher_id = intval($_SESSION['teacher_id']);
 }
 
-// Instructor ට අදාළ Courses වල ඉන්න සියලුම Students ලා Fetch කිරීම (Direct Course ID එකෙන් හෝ Enrollments හරහා)
+// Fetch all students in the instructor's courses (via direct course ID or enrollments)
 $query = "SELECT DISTINCT
             s.id AS student_db_id,
             s.*,

@@ -154,7 +154,7 @@ $noticesResult = $conn->query("SELECT * FROM announcements ORDER BY id DESC");
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Path එක ajax/js/ Folder එකට සකස් කරන ලදී -->
+    <!-- Path updated to the ajax/js/ folder -->
     <script src="ajax/js/announcements.js"></script>
 </body>
 </html>

@@ -129,7 +129,7 @@ elseif ($is_direct_add) {
     ];
 }
 
-// Fetch Active Courses for Form Dropdown[cite: 12]
+// Fetch Active Courses for Form Dropdown
 $coursesQuery = $conn->query("SELECT id, course_code, course_name FROM courses ORDER BY course_name ASC");
 $courses_data = [];
 if ($coursesQuery && $coursesQuery->num_rows > 0) {
@@ -138,7 +138,7 @@ if ($coursesQuery && $coursesQuery->num_rows > 0) {
     }
 }
 
-// Approved / Registered Enrollments List[cite: 12]
+// Approved / Registered Enrollments List
 $approvedEnrollments = $conn->query("
     SELECT 
         e.*, 

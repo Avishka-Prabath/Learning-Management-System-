@@ -33,7 +33,7 @@
                             <h3 class="fw-bold text-dark mb-1">BSc in Software Engineering</h3>
                             <p class="text-muted small mb-0"><i class="bi bi-people me-1"></i> 120 Enrolled Students • Assigned Lecturer: Dr. Saman Perera</p>
                         </div>
-                        <!-- Upload Material Page එකට Page Link එක -->
+                        <!-- Link to the Upload Material page -->
                         <a href="upload-material.php" class="btn btn-primary rounded-pill px-3 py-2 fw-semibold btn-sm shadow-sm">
                             <i class="bi bi-cloud-arrow-up-fill me-1"></i> Upload Lecture Note
                         </a>

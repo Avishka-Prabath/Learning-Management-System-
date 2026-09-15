@@ -1,5 +1,5 @@
 <?php
-// exact error එක බලාගැනීමට temporary errors enable කරමු
+// Temporarily enable error reporting to see the exact error
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 ob_start();

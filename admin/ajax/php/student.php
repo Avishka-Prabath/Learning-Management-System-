@@ -1,8 +1,8 @@
 <?php
-// Output buffering ආරම්භ කර නොපෙනෙන warnings/notices නිසා JSON කඩාවැටීම වැළැක්වීම[cite: 14]
+// Start output buffering to stop hidden warnings/notices from breaking the JSON response
 ob_start();
 
-// 1. Include core OOP dependencies[cite: 14]
+// 1. Include core OOP dependencies
 $includePath = __DIR__ . '/../../class/include.php';
 if (file_exists($includePath)) {
     require_once $includePath;
@@ -16,15 +16,15 @@ if (file_exists($includePath)) {
     exit();
 }
 
-// Global Database Connection ($conn) එක initialize කර ගැනීම
+// Initialize the global database connection ($conn)
 $db = Database::getInstance();
 $conn = method_exists($db, 'getConnection') ? $db->getConnection() : $db->DB_CON;
 
-// Output Buffer එක සුද්ධ කර JSON Header එක සැකසීම[cite: 14]
+// Clear the output buffer and set the JSON header
 ob_clean();
 header('Content-Type: application/json; charset=UTF-8');
 
-// 2. Request Method Check[cite: 14]
+// 2. Request Method Check
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode([
         'status'  => 'error',
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit();
 }
 
-// 3. Action validation logic[cite: 14]
+// 3. Action validation logic
 $action = isset($_POST['action']) ? trim($_POST['action']) : '';
 
 // -------------------------------------------------------------
@@ -41,7 +41,7 @@ $action = isset($_POST['action']) ? trim($_POST['action']) : '';
 // -------------------------------------------------------------
 if ($action === 'create' || isset($_POST['create'])) {
 
-    // Input Data ලබා ගැනීම (JavaScript ෆයිල් එකට අනුකූලව සියලුම Fields එකතු කර ඇත)[cite: 14]
+    // Get input data (all fields matched to the JavaScript file)
     $full_name         = isset($_POST['full_name']) ? trim($_POST['full_name']) : '';
     $nic               = isset($_POST['nic']) ? trim($_POST['nic']) : '';
     $first_name        = isset($_POST['first_name']) ? trim($_POST['first_name']) : '';
@@ -60,15 +60,15 @@ if ($action === 'create' || isset($_POST['create'])) {
     $guardian_phone    = !empty(trim($_POST['guardian_phone'] ?? '')) ? trim($_POST['guardian_phone']) : NULL;
     $guardian_relation = !empty(trim($_POST['guardian_relation'] ?? '')) ? trim($_POST['guardian_relation']) : NULL;
     
-    // Campus Specific Credentials[cite: 14]
+    // Campus Specific Credentials
     $campus_id         = !empty(trim($_POST['campus_id'] ?? '')) ? trim($_POST['campus_id']) : 'EM-2026-' . rand(1000, 9999);
     $campus_email      = !empty(trim($_POST['campus_email'] ?? '')) ? trim($_POST['campus_email']) : strtolower($first_name . '.' . rand(100,999) . '@edumart.ac.lk');
     $password          = isset($_POST['password']) ? trim($_POST['password']) : 'student123';
     
-    // Hidden Enrollment ID if registered from application[cite: 14]
+    // Hidden Enrollment ID if registered from application
     $enrollment_id     = isset($_POST['enrollment_id']) ? intval($_POST['enrollment_id']) : 0;
 
-    // අනිවාර්ය Fields හිස්දැයි පරීක්ෂා කිරීම[cite: 14]
+    // Check whether required fields are empty
     if (empty($full_name) || empty($nic) || empty($first_name) || empty($last_name) || empty($email) || empty($phone) || empty($password) || $course_id <= 0) {
         echo json_encode([
             "status"  => 'error',
@@ -77,10 +77,10 @@ if ($action === 'create' || isset($_POST['create'])) {
         exit();
     }
 
-    // Student Object එකක් සෑදීම[cite: 14]
+    // Create a Student object
     $STUDENT = new Student(NULL);
 
-    // Email එක කලින් භාවිතා කර ඇත්දැයි පරීක්ෂා කිරීම[cite: 14]
+    // Check whether the email is already in use
     if (method_exists($STUDENT, 'emailExists') && $STUDENT->emailExists($email)) {
         echo json_encode([
             "status"  => 'error',
@@ -89,8 +89,8 @@ if ($action === 'create' || isset($_POST['create'])) {
         exit();
     }
 
-    // Data Assign කිරීම (පැරණි Structure එක නොවස්වා අවශ්‍ය නව properties එකතු කර ඇත)[cite: 14]
-    $STUDENT->student_id        = $campus_id; // Mapping campus_id to student_id column[cite: 14]
+    // Assign data (new properties added without breaking the old structure)
+    $STUDENT->student_id        = $campus_id; // Mapping campus_id to student_id column
     $STUDENT->campus_id         = $campus_id;
     $STUDENT->full_name         = $full_name;
     $STUDENT->nic               = $nic;
@@ -118,16 +118,16 @@ if ($action === 'create' || isset($_POST['create'])) {
         $STUDENT->enrollment_id = $enrollment_id;
     }
 
-    // Default Avatar[cite: 14]
+    // Default Avatar
     if (empty($STUDENT->profile_photo)) {
         $STUDENT->profile_photo = "https://ui-avatars.com/api/?name=" . urlencode($first_name . '+' . $last_name) . "&background=0d6efd&color=fff";
     }
 
-    // Database එකට ඇතුළත් කිරීම[cite: 14]
+    // Insert into database
     $res = $STUDENT->create();
 
     if ($res) {
-        // Registration එක සාර්ථක නම් Enrollment එකේ status එක 'Registered' බවට update කරන්න[cite: 14]
+        // If registration succeeds, update the enrollment status to 'Registered'
         if ($enrollment_id > 0) {
             $updateStmt = $conn->prepare("UPDATE enrollments SET status = 'Registered' WHERE id = ?");
             $updateStmt->bind_param("i", $enrollment_id);
@@ -218,7 +218,7 @@ if ($action === 'create' || isset($_POST['create'])) {
         exit();
     }
 
-    // Keep existing hash if password field left blank on update[cite: 14]
+    // Keep existing hash if password field left blank on update
     if (!empty($password) && !(strlen($password) >= 60 && str_starts_with($password, '$2y$'))) {
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     } else {
@@ -262,7 +262,7 @@ if ($action === 'create' || isset($_POST['create'])) {
     exit();
 
 // -------------------------------------------------------------
-// 3. FETCH ALL STUDENTS[cite: 14]
+// 3. FETCH ALL STUDENTS
 // -------------------------------------------------------------
 } elseif ($action === 'fetch_all' || isset($_POST['fetch_all'])) {
 
@@ -276,7 +276,7 @@ if ($action === 'create' || isset($_POST['create'])) {
     exit();
 
 // -------------------------------------------------------------
-// 3. DELETE STUDENT[cite: 14]
+// 3. DELETE STUDENT
 // -------------------------------------------------------------
 } elseif ($action === 'delete' || isset($_POST['delete'])) {
 
@@ -305,7 +305,7 @@ if ($action === 'create' || isset($_POST['create'])) {
     exit();
 
 // -------------------------------------------------------------
-// INVALID ACTION[cite: 14]
+// INVALID ACTION
 // -------------------------------------------------------------
 } else {
     echo json_encode([

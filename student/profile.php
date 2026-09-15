@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require_once '../db.php';
 
-// Student Logged in ද බලයි
+// Check whether the student is logged in
 if (!isset($_SESSION['student_logged_in']) || $_SESSION['student_logged_in'] !== true) {
     header("Location: login.php");
     exit();
@@ -246,7 +246,7 @@ $stmt->execute();
 $student = $stmt->get_result()->fetch_assoc();
 $stmt->close();
 
-// Field fallback අගයන්
+// Field fallback values
 $first_name  = $student['first_name'] ?? 'Avishka';
 $last_name   = $student['last_name'] ?? 'Prabath';
 $full_name   = $student['full_name'] ?? ($first_name . ' ' . $last_name);

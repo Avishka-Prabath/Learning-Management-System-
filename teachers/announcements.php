@@ -1,8 +1,8 @@
 <?php
-// 1. Core Config & Classes Include කිරීම (Session handling auto සිදුවේ)
+// 1. Include core config & classes (session handling happens automatically)
 require_once 'class/include.php';
 
-// 2. Announcement Class එකෙන් Object එකක් සාදා Data Fetch කිරීම
+// 2. Create an Announcement object and fetch data
 $announcementObj = new Announcement();
 $result = method_exists($announcementObj, 'getTeacherAnnouncements') ? $announcementObj->getTeacherAnnouncements() : $announcementObj->all()
 

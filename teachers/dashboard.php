@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Teacher Log වී නැතහොත් login.php වෙත යැවීම
+// Redirect to login.php if the teacher is not logged in
 if (!isset($_SESSION['teacher_logged_in']) || $_SESSION['teacher_logged_in'] !== true) {
     header("Location: login.php");
     exit();

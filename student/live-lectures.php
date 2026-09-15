@@ -1,6 +1,6 @@
 <?php
 // Database Connection
-require_once('../db.php'); // ඔබේ DB Connection file එකේ නම මෙතැනට යොදන්න
+require_once('../db.php'); // Put your DB connection file name here
 
 // Fetch classes for students
 $query = "SELECT * FROM live_classes WHERE status != 'Completed' ORDER BY class_date ASC, start_time ASC";

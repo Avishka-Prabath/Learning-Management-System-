@@ -1,9 +1,9 @@
 <?php
 
-// 1. Database Class එක මුලින්ම Load විය යුතුය
+// 1. The Database class must be loaded first
 require_once __DIR__ . '/Database.php';
 
-// 2. Models Load කිරීම
+// 2. Load models
 require_once __DIR__ . '/Student.php';
 require_once __DIR__ . '/Instructor.php';
 require_once __DIR__ . '/Courses.php';

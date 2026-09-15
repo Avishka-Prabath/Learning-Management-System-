@@ -1,10 +1,10 @@
 <?php
-// Session එක දැනටමත් Start වී නැත්නම් පමණක් Silent එකේ Start කිරීම
+// Silently start the session only if it hasn't started already
 if (session_status() === PHP_SESSION_NONE && !headers_sent()) {
     @session_start();
 }
 
-// Log වී සිටින Lecturer ගේ Details ලබා ගැනීම
+// Get the logged-in lecturer's details
 $logged_teacher_name  = $_SESSION['teacher_name'] ?? 'Instructor';
 $logged_teacher_email = $_SESSION['teacher_email'] ?? 'instructor@edumart.ac.lk';
 

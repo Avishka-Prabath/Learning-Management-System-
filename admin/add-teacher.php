@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// class/include.php ෆයිල් එක නිවැරදි Path එකෙන් Include කිරීම
+// Include class/include.php with the correct path
 $includePath = __DIR__ . '/class/include.php';
 
 if (file_exists($includePath)) {
@@ -16,11 +16,11 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     exit();
 }
 
-// Database Connection එක ලබා ගැනීම
+// Get the database connection
 $db = Database::getInstance();
 $conn = method_exists($db, 'getConnection') ? $db->getConnection() : $db->DB_CON;
 
-// Courses ලබා ගැනීම
+// Get the list of courses
 $coursesQuery = $conn->query("SELECT id, course_code, course_name FROM courses ORDER BY course_name ASC");
 ?>
 <!DOCTYPE html>
@@ -195,7 +195,7 @@ $coursesQuery = $conn->query("SELECT id, course_code, course_name FROM courses O
             }
         }
 
-        // Full Name එක Type කරන විට Email & Username Auto-fill වීමේ Logic එක
+        // Auto-fill email & username while typing the full name
         $(document).ready(function() {
             $('#full_name').on('input', function() {
                 let nameVal = $(this).val().trim().toLowerCase();
@@ -218,11 +218,11 @@ $coursesQuery = $conn->query("SELECT id, course_code, course_name FROM courses O
                     }
                     generatedEmail += '@edumart.ac.lk';
 
-                    // Form Fields වලට Values Auto Fill කිරීම
+                    // Auto-fill form field values
                     $('#username').val(generatedUsername);
                     $('#email').val(generatedEmail);
 
-                    // Avatar Update කිරීම
+                    // Update avatar
                     let avatarName = encodeURIComponent($('#full_name').val().trim());
                     $('#profilePreview').attr('src', 'https://ui-avatars.com/api/?name=' + avatarName + '&background=0d6efd&color=fff');
                 } else {

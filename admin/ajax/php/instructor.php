@@ -1,5 +1,5 @@
 <?php
-// Output buffering ආරම්භ කර ඕනෑම නොපෙනෙන warnings/notices නිසා JSON කඩාවැටීම වැළැක්වීම
+// Start output buffering to stop hidden warnings/notices from breaking the JSON response
 ob_start();
 
 // 1. Include core OOP dependencies
@@ -16,7 +16,7 @@ if (file_exists($includePath)) {
     exit();
 }
 
-// Output Buffer එක සුද්ධ කර JSON Header එක සැකසීම
+// Clear the output buffer and set the JSON header
 ob_clean();
 header('Content-Type: application/json; charset=UTF-8');
 
@@ -37,7 +37,7 @@ $action = isset($_POST['action']) ? trim($_POST['action']) : '';
 // -------------------------------------------------------------
 if ($action === 'create' || isset($_POST['create'])) {
 
-    // Input Data ලබා ගැනීම
+    // Get input data
     $title           = isset($_POST['title']) ? trim($_POST['title']) : '';
     $full_name       = isset($_POST['full_name']) ? trim($_POST['full_name']) : '';
     $email           = isset($_POST['email']) ? trim($_POST['email']) : '';
@@ -47,7 +47,7 @@ if ($action === 'create' || isset($_POST['create'])) {
     $username        = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password        = isset($_POST['password']) ? trim($_POST['password']) : '';
 
-    // අනිවාර්ය Fields හිස්දැයි පරීක්ෂා කිරීම
+    // Check whether required fields are empty
     if (empty($title) || empty($full_name) || empty($email) || empty($username) || empty($password)) {
         echo json_encode([
             "status"  => 'error',
@@ -56,10 +56,10 @@ if ($action === 'create' || isset($_POST['create'])) {
         exit();
     }
 
-    // Instructor Object එකක් සෑදීම
+    // Create an Instructor object
     $INSTRUCTOR = new Instructor(NULL);
 
-    // Email එක කලින් භාවිතා කර ඇත්දැයි පරීක්ෂා කිරීම
+    // Check whether the email is already in use
     if ($INSTRUCTOR->emailExists($email)) {
         echo json_encode([
             "status"  => 'error',
@@ -68,7 +68,7 @@ if ($action === 'create' || isset($_POST['create'])) {
         exit();
     }
 
-    // Data Assign කිරීම
+    // Assign data
     $INSTRUCTOR->title           = $title;
     $INSTRUCTOR->full_name       = $full_name;
     $INSTRUCTOR->email           = $email;
@@ -79,7 +79,7 @@ if ($action === 'create' || isset($_POST['create'])) {
     $INSTRUCTOR->password        = password_hash($password, PASSWORD_DEFAULT); // Secure Password Hashing
     $INSTRUCTOR->status          = 'Active';
 
-    // Profile Photo එක Upload කිරීමේ Logic එක
+    // Logic for uploading the profile photo
     if (isset($_FILES['profile_photo']) && $_FILES['profile_photo']['error'] === UPLOAD_ERR_OK) {
         $upload_dir = __DIR__ . '/../../uploads/instructors/';
         
@@ -106,7 +106,7 @@ if ($action === 'create' || isset($_POST['create'])) {
         $INSTRUCTOR->profile_photo = NULL;
     }
 
-    // Database එකට ඇතුළත් කිරීම
+    // Insert into database
     $res = $INSTRUCTOR->create();
 
     if ($res) {

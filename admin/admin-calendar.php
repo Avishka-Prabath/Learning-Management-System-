@@ -5,7 +5,7 @@ require_once __DIR__ . '/class/include.php';
 $calendarObj = new Calendar();
 $schedules = $calendarObj->all();
 
-// Database එකෙන් Instructors ලා ලබා ගැනීම
+// Get instructors from the database
 $instructorObj = new Instructor();
 $instructors = $instructorObj->all();
 ?>
@@ -195,7 +195,7 @@ $instructors = $instructorObj->all();
 
     <script>
         $(document).ready(function() {
-            // Instructor Dropdown එක Searchable Dropdown එකක් බවට පත් කිරීම
+            // Turn the instructor dropdown into a searchable dropdown
             $('.select2-instructor').select2({
                 theme: 'bootstrap-5',
                 width: '100%',

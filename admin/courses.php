@@ -17,7 +17,7 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-// Course Update Logic (Form Submit වූ විට)
+// Course update logic (on form submit)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_course') {
     $course_id   = intval($_POST['edit_course_id']);
     $course_code = trim($_POST['edit_course_code']);
@@ -426,7 +426,7 @@ if ($teachersQuery && $teachersQuery->num_rows > 0) {
                 let image       = $(this).data('image');
                 let description = $(this).data('description');
 
-                // Modal Form Fields වලට Data Fill කිරීම
+                // Fill the modal form fields with data
                 $('#modal_course_id').val(id);
                 $('#modal_course_code').val(code);
                 $('#modal_course_name').val(name);
@@ -437,7 +437,7 @@ if ($teachersQuery && $teachersQuery->num_rows > 0) {
                 $('#modal_image').val(image);
                 $('#modal_description').val(description);
 
-                // Modal එක Open කිරීම
+                // Open the modal
                 $('#editCourseModal').modal('show');
             });
         });

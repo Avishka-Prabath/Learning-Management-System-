@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Root folder එකේ ඇති db.php include කිරීම
+// Include db.php from the root folder
 require_once '../db.php'; 
 
 // Instructor Login Check

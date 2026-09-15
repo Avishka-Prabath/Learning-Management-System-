@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Teacher Log වී නැතහොත් login.php වෙත යැවීම
+// Redirect to login.php if the teacher is not logged in
 if (!isset($_SESSION['teacher_logged_in']) || $_SESSION['teacher_logged_in'] !== true) {
     header("Location: login.php");
     exit();
@@ -9,12 +9,12 @@ if (!isset($_SESSION['teacher_logged_in']) || $_SESSION['teacher_logged_in'] !==
 
 require_once '../db.php';
 
-// Log වී සිටින Teacher ගේ ID එක සහ Name එක ලබා ගැනීම
+// Get the logged-in teacher's ID and name
 $current_teacher_id   = intval($_SESSION['teacher_id'] ?? 0);
 $current_teacher_name = $_SESSION['teacher_name'] ?? 'Instructor';
 $swal_script = "";
 
-// 1. Teacher අලුතෙන් Live Class එකක් Schedule කරන Logic එක
+// 1. Logic for a teacher scheduling a new live class
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'create_live_class') {
     $module_id    = intval($_POST['module_id'] ?? 0);
     $title        = trim($_POST['title'] ?? '');
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $meeting_link = trim($_POST['meeting_link'] ?? '');
 
     if ($module_id > 0 && !empty($title) && !empty($event_date) && !empty($meeting_link)) {
-        // Module එකට අදාළ Details (Name / Code) ගැනීම
+        // Get details (name / code) for the module
         $modStmt = $conn->prepare("SELECT module_name, module_code FROM modules WHERE id = ?");
         $modStmt->bind_param("i", $module_id);
         $modStmt->execute();
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// 2. Teacher Link එක Update කළ විට Save වන Backend Logic එක
+// 2. Backend logic that saves when the teacher updates the link
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update_meeting_link') {
     $schedule_id  = intval($_POST['schedule_id']);
     $meeting_link = trim($_POST['meeting_link']);
@@ -88,11 +88,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     });";
 }
 
-// 3. Live Class එක Delete කරන Backend Logic එක
+// 3. Backend logic for deleting a live class
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete_live_class') {
     $schedule_id = intval($_POST['schedule_id']);
 
-    // Schedules table එකෙන් details ලබාගැනීම
+    // Get details from the schedules table
     $fetchStmt = $conn->prepare("SELECT title, event_date FROM schedules WHERE id = ? AND (instructor_id = ? OR instructor_id = 0)");
     $fetchStmt->bind_param("ii", $schedule_id, $current_teacher_id);
     $fetchStmt->execute();

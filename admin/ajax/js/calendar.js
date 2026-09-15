@@ -92,7 +92,7 @@ jQuery(document).ready(function ($) {
     $(document).on('click', '.delete-schedule', function (e) {
         e.preventDefault();
 
-        // Icon එක Click වුවත් Button එකෙන් ID එක හරියටම ගන්නා ක්‍රමය
+        // Reliably get the ID from the button even if the icon inside it is clicked
         var id = $(this).attr('data-id') || $(this).closest('.delete-schedule').attr('data-id');
 
         if (!id) {

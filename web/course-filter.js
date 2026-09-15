@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const matchesCategory = (selectedCategory === "all" || itemCategory === selectedCategory);
 
             if (matchesSearch && matchesCategory) {
-                // Bootstrap Grid එක කැඩෙන්නේ නැති වෙන්න block වෙනුවට '' (default) දාමු
+                // Use '' (default) instead of block so the Bootstrap grid doesn't break
                 item.style.display = ""; 
                 visibleCount++;
             } else {

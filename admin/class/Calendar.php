@@ -46,7 +46,7 @@ class Calendar
 
         $inst_id = intval($this->instructor_id);
 
-        // sssssi -> String 5ක් සහ Integer (instructor_id) එකක්
+        // sssssi -> 5 strings and 1 integer (instructor_id)
         $stmt->bind_param("sssssi", 
             $this->title, 
             $this->type, 
@@ -70,7 +70,7 @@ class Calendar
         $db = Database::getInstance();
         $conn = method_exists($db, 'getConnection') ? $db->getConnection() : $db->DB_CON;
 
-        // Teachers/Instructors ලාගේ නම්ද එකතු කරගෙන Query කිරීම
+        // Query including teacher/instructor names
         $query = "SELECT s.*, CONCAT(IFNULL(t.title,''), ' ', IFNULL(t.full_name,'')) AS instructor_name 
                   FROM schedules s 
                   LEFT JOIN teachers t ON s.instructor_id = t.id 

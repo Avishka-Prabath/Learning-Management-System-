@@ -1,5 +1,5 @@
 <?php
-// දැනට Active වෙලා තියෙන Page එක Auto Detect කරගැනීම
+// Auto-detect the currently active page
 $current_page = basename($_SERVER['SCRIPT_NAME']);
 ?>
 

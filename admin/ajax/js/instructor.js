@@ -67,7 +67,7 @@ jQuery(document).ready(function () {
             formData.append('action', 'create');
 
             $.ajax({
-                url: "ajax/php/instructor.php", // නිවැරදි කරන ලද URL එක
+                url: "ajax/php/instructor.php", // Corrected URL
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
