@@ -1,0 +1,371 @@
+/* Import Web Font */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #1a202c;
+}
+
+/* Left Side Hero Section - Matching Website Theme */
+.hero-section {
+    background: linear-gradient(135deg, rgba(11, 26, 58, 0.85) 0%, rgba(72, 133, 238, 0.75) 100%), 
+                url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 5rem;
+}
+
+.hero-tag {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 1.25rem;
+    line-height: 1.15;
+}
+
+.hero-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #e2e8f0;
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+}
+
+/* Matching 'Explore Campus' Button Style */
+.btn-visit-site {
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 12px 32px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+.btn-visit-site:hover {
+    background-color: #ffffff;
+    color: #0d5be1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Right Side Form Section */
+.login-section {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2.5rem;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Brand Logo Matching Web Navbar */
+.brand-logo-box {
+    background-color: #0d5be1;
+    color: #ffffff;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.brand-name {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0b1a3a;
+    letter-spacing: -0.5px;
+}
+
+.brand-name span {
+    color: #0d5be1;
+}
+
+.portal-title {
+    color: #0d5be1;
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.5px;
+}
+
+/* Inputs Matching Web Search / Forms */
+.form-control-modern {
+    background-color: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.form-control-modern:focus {
+    background-color: #ffffff;
+    border-color: #0d5be1;
+    box-shadow: 0 0 0 0.25rem rgba(13, 91, 225, 0.12);
+}
+
+.input-group-text-modern {
+    background-color: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-right: none;
+    border-radius: 12px 0 0 12px;
+    color: #64748b;
+    padding-left: 16px;
+    font-size: 1.1rem;
+}
+
+.input-group .form-control-modern {
+    border-left: none;
+    border-radius: 0 12px 12px 0;
+}
+
+/* Matching Website Primary Button Gradient/Solid Blue */
+.btn-login {
+    background-color: #0d5be1;
+    border: none;
+    border-radius: 50px;
+    padding: 13px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 20px rgba(13, 91, 225, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #0a47b3;
+    box-shadow: 0 10px 25px rgba(13, 91, 225, 0.4);
+    transform: translateY(-2px);
+}/* ==========================================================================
+   Global & Utility Styles
+   ========================================================================== */
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.content-card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Custom Purple Badge */
+.bg-purple {
+    background-color: #f3e8ff !important;
+}
+.text-purple {
+    color: #7c3aed !important;
+}
+
+/* Custom Scrollbar for Dropdowns */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   Dashboard Styles
+   ========================================================================== */
+.welcome-card-bg {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    border-radius: 20px;
+}
+
+/* Backdrop blur for glassmorphism effect */
+.backdrop-blur {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* ==========================================================================
+   Profile Page Styles
+   ========================================================================== */
+.nav-pills-custom .nav-link {
+    color: #475569;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px 20px;
+    transition: all 0.2s ease;
+}
+
+.nav-pills-custom .nav-link.active {
+    background-color: #0d5be1;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(13, 91, 225, 0.25);
+}
+
+.profile-card {
+    background: linear-gradient(135deg, #0b1a3a 0%, #0d5be1 100%);
+}
+
+/* ==========================================================================
+   Topbar & Navigation Styles
+   ========================================================================== */
+.smart-topbar {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Live Pulse Animation for Notifications */
+.pulse-badge {
+    position: relative;
+}
+
+.pulse-badge::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+    70% {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 8px rgba(220, 53, 69, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+.notification-dropdown {
+    width: 320px;
+    border-radius: 16px;
+}
+
+.notification-item {
+    transition: background-color 0.2s ease;
+    border-radius: 10px;
+}
+
+.notification-item:hover {
+    background-color: #f8f9fa;
+}
+
+
+/* ==========================================================================
+   Academic Calendar & Schedule Styles
+   ========================================================================== */
+
+/* Date Box Component */
+.date-box {
+    min-width: 68px;
+    height: 68px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+/* Event Card Base */
+.event-card {
+    transition: all 0.25s ease-in-out;
+    border-left: 5px solid transparent;
+}
+
+.event-card:hover {
+    background-color: #f8fafc !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Category Specific Themes */
+.event-lecture { 
+    border-left-color: #0d6efd; 
+    background: linear-gradient(90deg, rgba(13, 110, 253, 0.02) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.event-assignment { 
+    border-left-color: #dc3545; 
+    background: linear-gradient(90deg, rgba(220, 53, 69, 0.02) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.event-exam { 
+    border-left-color: #ffc107; 
+    background: linear-gradient(90deg, rgba(255, 193, 7, 0.03) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+/* Helper Typography & Badges */
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.fw-extrabold {
+    font-weight: 800;
+}
+
+
+/* ==========================================================================
+   Student List / Student Portal Table Styles
+   ========================================================================== */
+
+.student-row {
+    transition: background-color 0.15s ease-in-out;
+}
+
+.student-row:hover {
+    background-color: #f8fafc;
+}
+
+.student-name {
+    font-size: 0.95rem;
+}
+
+.student-id {
+    font-size: 0.88rem;
+    letter-spacing: 0.3px;
+}

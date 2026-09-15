@@ -1,0 +1,337 @@
+.hover-dark:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+    transition: all 0.2s ease-in-out;
+}
+.hover-dark:hover i {
+    opacity: 1 !important;
+}
+
+/* Custom Admin UI & Login Styling */
+body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #f8fafc;
+}
+
+.login-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 440px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.form-control-modern {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.form-control-modern:focus {
+    background-color: rgba(15, 23, 42, 0.8);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+    color: #f8fafc;
+}
+
+.btn-login {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+}
+
+.btn-login:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 1rem;
+}
+
+/* Sidebar Hover Styles */
+.hover-dark {
+    transition: all 0.2s ease-in-out;
+}
+
+.hover-dark:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+}
+
+.hover-dark:hover i {
+    opacity: 1 !important;
+}
+
+/* Card Transition Effects */
+.stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Course Image Thumbnails */
+.course-thumb {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Custom Text Sizes */
+.extra-small {
+    font-size: 0.725rem;
+}
+
+
+/* Page Background & Layout Base */
+body, html {
+    background-color: #f8f9fa !important;
+}
+
+.main-wrapper {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Card Styling */
+.card-custom {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    background: #ffffff;
+    width: 100%;
+}
+
+/* Table Header Styling */
+.table thead th {
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #6c757d;
+    font-weight: 700;
+    border-bottom: 1px solid #edf2f7;
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+    background-color: #fafbfc;
+}
+
+/* Table Row Spacing */
+.table td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+/* Student Enrollments Full Width Layout Fixes */
+html, body {
+    background-color: #f8f9fa !important;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.admin-layout-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.main-wrapper {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    background-color: #f8f9fa;
+}
+
+.content-area {
+    padding: 2rem 2.5rem;
+    width: 100%;
+}
+
+.card-custom {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    background: #ffffff;
+    width: 100%;
+    margin: 0;
+}
+
+.table thead th {
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #6c757d;
+    font-weight: 700;
+    border-bottom: 1px solid #edf2f7;
+    padding: 1.1rem 1rem;
+    background-color: #fafbfc;
+}
+
+.table td {
+    padding: 1.1rem 1rem;
+}
+
+/* Admin Layout Wrapper Setup */
+.admin-layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc;
+}
+
+.main-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.content-area {
+    padding: 1.8rem;
+    flex-grow: 1;
+}
+
+/* Custom Card & Shadows */
+.card-custom {
+    background: #ffffff;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* Custom Font Helper */
+.extra-small {
+    font-size: 0.75rem;
+}
+
+/* Rounded Form Controls */
+.form-control-pill, .form-select-pill {
+    border-radius: 50rem !important;
+}
+
+/* Custom Table Styling */
+.table-custom thead th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 0.725rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 16px;
+}
+
+.table-custom tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+
+/* Admin Layout Structure */
+.admin-layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc;
+}
+
+.main-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.content-area {
+    padding: 1.8rem;
+    flex-grow: 1;
+}
+
+/* Custom Cards & Shadows */
+.card-custom {
+    background: #ffffff;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.stat-card-item {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04);
+}
+
+.stat-icon-box {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+}
+
+/* Typography & Badges */
+.extra-small {
+    font-size: 0.75rem;
+}
+
+.course-thumb-lg {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Custom Table */
+.table-custom thead th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 0.725rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 16px;
+}
+
+.table-custom tbody td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
